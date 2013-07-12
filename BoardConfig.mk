@@ -25,7 +25,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 
 # Try to build the kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_p769_defconfig
-TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-omap4
+#TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-omap4
+TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-p769-ocuv
+
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
