@@ -24,7 +24,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
     $(LOCAL_PATH)/configs/hostapd.conf:system/etc/wifi/softap/hostapd.conf \
     $(LOCAL_PATH)/configs/touch_dev.idc:system/usr/idc/touch_dev.idc \
-    $(LOCAL_PATH)/configs/touch_dev.kl:system/usr/keylayout/touch_dev.kl
+    $(LOCAL_PATH)/configs/touch_dev.kl:system/usr/keylayout/touch_dev.kl \
+    $(LOCAL_PATH)/configs/Generic.kl:system/usr/keylayout/Generic.kl
 
 # stagefright confs
 PRODUCT_COPY_FILES += \
