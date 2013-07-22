@@ -8,22 +8,32 @@ on early-init
     chmod 660 /sys/module/lge_handle_panic/parameters/hidden_reset_enable
 
 on init
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage/emulated 0555 root root
+#    [antsvx] remove storage emulation
+#
+#    # See storage config details at http://source.android.com/tech/storage/
+#    mkdir /mnt/shell/emulated 0700 shell shell
+#
+#    mkdir /storage/emulated 0555 root root
+#
+#    export EXTERNAL_STORAGE /storage/emulated/legacy
+#    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+#    export EMULATED_STORAGE_TARGET /storage/emulated
+#
+#    # Support legacy paths
+#    symlink /storage/emulated/legacy /sdcard
+#    symlink /storage/emulated/legacy /mnt/sdcard
+#    symlink /storage/emulated/legacy /storage/sdcard0
+#    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+#
+#    mkdir /storage/sdcard1 0000 system system
 
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
+    export EXTERNAL_STORAGE /storage/sdcard0
 
-    # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    mkdir /storage/sdcard0 0000 root root
 
-    mkdir /storage/sdcard1 0000 system system
-
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+#
 
 on fs
     mount_all ./fstab.u2
@@ -361,8 +371,10 @@ service glgps /system/bin/glgps -c /system/etc/gps_brcm_conf.xml
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
 # FUSE daemon
-service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
-    class late_start
+#
+# [antsvx] don't need this service anymore, we are not emulating
+#service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
+#    class late_start
 
 ## Set the wifi mac address
 on property:dev.bootcomplete=1
