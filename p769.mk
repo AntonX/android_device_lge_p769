@@ -13,9 +13,9 @@ PRODUCT_COPY_FILES += \
 
 ## Scripts and confs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.p760.usb.rc:root/init.p760.usb.rc \
-    $(LOCAL_PATH)/init.lgep760board.rc:root/init.lgep760board.rc \
-    $(LOCAL_PATH)/ueventd.lgep760board.rc:root/ueventd.lgep760board.rc \
+    $(LOCAL_PATH)/init.p769.usb.rc:root/init.p769.usb.rc \
+    $(LOCAL_PATH)/init.lgep769board.rc:root/init.lgep769board.rc \
+    $(LOCAL_PATH)/ueventd.lgep769board.rc:root/ueventd.lgep769board.rc \
     $(LOCAL_PATH)/fstab.u2:root/fstab.u2 \
     $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab
 
@@ -78,8 +78,8 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     audio.a2dp.default \
     audio_policy.default \
-    audio.primary.p760 \
-    hwcomposer.p760
+    audio.primary.p769 \
+    hwcomposer.p769
 
 PRODUCT_PACKAGES += \
     OMXCore \

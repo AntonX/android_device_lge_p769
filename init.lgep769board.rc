@@ -1,4 +1,4 @@
-import init.p760.usb.rc
+import init.p769.usb.rc
 
 on early-init
 # create mountpoints

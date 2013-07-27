@@ -8,7 +8,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := omap4
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_BOOTLOADER_BOARD_NAME := p760
+TARGET_BOOTLOADER_BOARD_NAME := p769
 TARGET_CPU_SMP := true
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
@@ -28,6 +28,8 @@ TARGET_KERNEL_CONFIG := cyanogenmod_p769_defconfig
 #TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-omap4
 TARGET_KERNEL_SOURCE := kernel/lge/lge-kernel-p769-ocuv
 
+# toolchain for kernel, must be in prebuilt\linux-x86\toolchain\
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-4.7
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 
