@@ -37,7 +37,7 @@ public class MaxSleepFrequency implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DevicePreferenceActivity.KEY_MAX_SLEEP_FREQUENCY, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DevicePerformanceActivity.KEY_MAX_SLEEP_FREQUENCY, "0"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

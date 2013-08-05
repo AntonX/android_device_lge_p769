@@ -21,7 +21,7 @@ import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import com.cyanogenmod.settings.device.R;
 
-public class DevicePreferenceActivity extends PreferenceFragment {
+public class DevicePerformanceActivity extends PreferenceFragment {
 
     public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
     public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";
@@ -37,19 +37,19 @@ public class DevicePreferenceActivity extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.performance);
 
         mGpuOverclock = (ListPreference) findPreference(KEY_GPU_OVERCLOCK);
         mGpuOverclock.setEnabled(GpuOverclock.isSupported());
         mGpuOverclock.setOnPreferenceChangeListener(new GpuOverclock());
         GpuOverclock.updateSummary(mGpuOverclock, Integer.parseInt(mGpuOverclock.getValue()));
 
-	mIvaOverclock = (ListPreference) findPreference(KEY_IVA_OVERCLOCK);
+        mIvaOverclock = (ListPreference) findPreference(KEY_IVA_OVERCLOCK);
         mIvaOverclock.setEnabled(IvaOverclock.isSupported());
         mIvaOverclock.setOnPreferenceChangeListener(new IvaOverclock());
         IvaOverclock.updateSummary(mIvaOverclock, Integer.parseInt(mIvaOverclock.getValue()));
 
-	mMaxSleepFrequency = (ListPreference) findPreference(KEY_MAX_SLEEP_FREQUENCY);
+        mMaxSleepFrequency = (ListPreference) findPreference(KEY_MAX_SLEEP_FREQUENCY);
         mMaxSleepFrequency.setEnabled(MaxSleepFrequency.isSupported());
         mMaxSleepFrequency.setOnPreferenceChangeListener(new MaxSleepFrequency());
         MaxSleepFrequency.updateSummary(mMaxSleepFrequency, Integer.parseInt(mMaxSleepFrequency.getValue()));

@@ -10,5 +10,7 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent bootintent) {
         GpuOverclock.restore(context);
         IvaOverclock.restore(context);
+        MaxSleepFrequency.restore(context);
+        AudioTuningPreference.restore(context);
     }
 }

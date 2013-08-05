@@ -2,10 +2,21 @@
 <resources>
     <string name="app_name">Настройки LGE L9</string>
 
+    <string name="general_title">ОБЩИЕ</string>
+    <string name="audio_title">ЗВУК</string>
+    <string name="performance_title">ПРОИЗВОДИТЕЛЬНОСТЬ</string>
+
     <string name="category_performance_title">Производительность</string>
+    <string name="category_audio_title">Звук</string>
 
     <string name="gpu_overclock_title">Максимальная частота GPU</string>
     <string name="iva_overclock_title">Максимальная частота IVA</string>
     <string name="max_sleep_frequency_title">Максимальная частота при выкл. экране</string>
+
+    <string name="audio_hpvol_title">Усилитесь Наушников</string>
+    <string name="audio_hpvol_gain_title">Усиление</string>
+    <string name="audio_hpvol_summary">Управление аналоговым усилением. Текущее: %d дБ</string>
+    <string name="audio_hpvol_default_title">По Умолчанию</string>
+    <string name="audio_hpvol_restoreonboot">Восстановить при агрузке</string>
 
 </resources>

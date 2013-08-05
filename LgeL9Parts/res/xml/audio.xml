@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/app_name">
+
+    <PreferenceCategory android:key="category_audio">
+        <com.cyanogenmod.settings.device.AudioTuningPreference
+            android:key="audio_hpvol"
+            android:title="@string/audio_hpvol_title"
+            android:summary="@string/audio_hpvol_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
