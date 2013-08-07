@@ -6,8 +6,13 @@
     <string name="audio_title">AUDIO</string>
     <string name="performance_title">PERFORMANCE</string>
 
+    <string name="category_general_title">General</string>
     <string name="category_performance_title">Performance</string>
     <string name="category_audio_title">Audio</string>
+
+    <string name="led_title">Lights</string>
+    <string name="touch_led_title">Disable Touch Lights</string>
+    <string name="touch_led_summary">LEDs will not be turning on touch.</string>
 
     <string name="gpu_overclock_title">Maximum GPU Clock Speed</string>
     <string name="iva_overclock_title">Maximum IVA Clock Speed</string>

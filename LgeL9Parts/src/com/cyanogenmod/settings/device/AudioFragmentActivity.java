@@ -39,10 +39,13 @@ public class AudioFragmentActivity extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (!AudioTuningPreference.isSupported())
+            return; 
+
         addPreferencesFromResource(R.xml.audio);
 
         mAudioTuning = (AudioTuningPreference) findPreference(AudioFragmentActivity.KEY_AUDIO_HPVOL);
-        mAudioTuning.setEnabled(AudioTuningPreference.isSupported());
+        //mAudioTuning.setEnabled(AudioTuningPreference.isSupported());
         mAudioTuning.updateSummary();
     }
 }

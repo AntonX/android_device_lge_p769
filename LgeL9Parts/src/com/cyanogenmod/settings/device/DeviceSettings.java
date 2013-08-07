@@ -10,6 +10,9 @@ import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.preference.Preference;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -18,6 +21,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import java.util.ArrayList;
 import com.cyanogenmod.settings.device.R;
+import android.view.MenuItem;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
 
 public class DeviceSettings extends Activity {
 
@@ -35,11 +41,14 @@ public class DeviceSettings extends Activity {
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE, ActionBar.DISPLAY_SHOW_TITLE);
-        //actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         //actionBar.setTitle(R.string.app_name);
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
 
+        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.general_title),
+                GeneralActivity.class, null);
+        
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
                 AudioFragmentActivity.class, null);
 
@@ -48,10 +57,13 @@ public class DeviceSettings extends Activity {
         
         if (savedInstanceState != null) {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        } else {
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            int index = sharedPrefs.getInt("persist_tab",0);
+            if (index < actionBar.getNavigationItemCount())
+                actionBar.setSelectedNavigationItem(index);
         }
 
-        //getFragmentManager().beginTransaction().replace(android.R.id.content,
-        //            new DevicePerformanceActivity()).commit();
      }
 
     @Override
@@ -60,18 +72,20 @@ public class DeviceSettings extends Activity {
         outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
     }
 
-    //@Override
-    //public boolean onOptionsItemSelected(MenuItem item) {
-    //    switch (item.getItemId()) {
-    //    case android.R.id.home:
-    //        DeviceSettings.this.onBackPressed();
-    //    default:
-    //        return super.onOptionsItemSelected(item);
-    //    }
-    //}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // TabsAdapter
 
     public static class TabsAdapter extends FragmentPagerAdapter
-            implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+                            implements ActionBar.TabListener, ViewPager.OnPageChangeListener {
+        
         private final Context mContext;
         private final ActionBar mActionBar;
         private final ViewPager mViewPager;
@@ -123,6 +137,7 @@ public class DeviceSettings extends Activity {
         @Override
         public void onPageSelected(int position) {
             mActionBar.setSelectedNavigationItem(position);
+            savePersistTab(position);
         }
 
         @Override
@@ -132,7 +147,7 @@ public class DeviceSettings extends Activity {
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
             Object tag = tab.getTag();
-            for (int i=0; i<mTabs.size(); i++) {
+            for (int i = 0; i < mTabs.size(); i++) {
                 if (mTabs.get(i) == tag) {
                     mViewPager.setCurrentItem(i);
                 }
@@ -145,6 +160,12 @@ public class DeviceSettings extends Activity {
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
+        }
+
+        private void savePersistTab(int index) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+            editor.putInt("persist_tab", index);
+            editor.commit();
         }
     }
 }
