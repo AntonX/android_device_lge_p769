@@ -96,6 +96,8 @@ BOARD_RIL_CLASS := ../../../device/lge/p769/ril/
 
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p769/bluetooth
 
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+
 BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p769/recovery-gfx.c
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
