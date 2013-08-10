@@ -22,10 +22,11 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
-public class GpuOverclock implements OnPreferenceChangeListener {
+public class TouchBlinkOff implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/devices/system/cpu/cpu0/cpufreq/gpu_max_freq";
+    private static final String FILE = "/sys/class/misc/backlightnotification/blink_period_off";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
@@ -37,7 +38,7 @@ public class GpuOverclock implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(PerformanceFragment.KEY_GPU_OVERCLOCK, "1"));
+        Utils.writeValue(FILE, sharedPrefs.getString(TouchBlinkActivity.KEY_TOUCH_BLINK_OFF, "7000"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -59,3 +60,4 @@ public class GpuOverclock implements OnPreferenceChangeListener {
         preference.setSummary(entries[best].toString());
     }
 }
+

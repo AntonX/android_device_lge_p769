@@ -21,6 +21,20 @@
                 android:value="com.cyanogenmod.settings.device.DeviceSettings" />
         </activity>
 
+        <activity android:name="com.cyanogenmod.settings.device.TouchBlinkActivity"
+        	  android:icon="@drawable/ic_launcher_cmdevicesettings"
+                  android:label="@string/touch_blink_title"
+                  android:excludeFromRecents="true"
+                  android:parentActivityName="com.cyanogenmod.settings.device.DeviceSettings">
+            <intent-filter>
+                <action android:name="com.cyanogenmod.settings.device.TouchBlinkActivity.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyanogenmod.settings.device.DeviceSettings" />
+        </activity>
+        
         <receiver android:name=".Startup" >
             <intent-filter android:priority="100" >
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

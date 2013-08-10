@@ -13,6 +13,10 @@
     <string name="led_title">Lights</string>
     <string name="touch_led_title">Disable Touch Lights</string>
     <string name="touch_led_summary">LEDs will not be turning on touch.</string>
+    <string name="touch_blink_title">Notification Lights</string>
+    <string name="touch_blink_timing_title">Light Pulse Timing</string>
+    <string name="touch_blink_off_title">Lights Off Time</string>
+    <string name="touch_blink_on_title">Lights On Time</string>
 
     <string name="gpu_overclock_title">Maximum GPU Clock Speed</string>
     <string name="iva_overclock_title">Maximum IVA Clock Speed</string>

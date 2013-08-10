@@ -66,7 +66,7 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
         mSeekBar = new AudioHpvolSeekBar(seekBar, valueDisplay, FILE_HPVOL, OFFSET_VALUE, MAX_VALUE);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-        Boolean restoreOnBoot = sharedPrefs.getBoolean(AudioFragmentActivity.KEY_AUDIO_HPVOL + "_boot", true);
+        Boolean restoreOnBoot = sharedPrefs.getBoolean(AudioFragment.KEY_AUDIO_HPVOL + "_boot", true);
         CheckBox bootCheckBox = (CheckBox) view.findViewById(R.id.cbAudioHpvolBoot);
         bootCheckBox.setChecked(restoreOnBoot); 
 
@@ -106,10 +106,10 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        Boolean restoreOnBoot = sharedPrefs.getBoolean(AudioFragmentActivity.KEY_AUDIO_HPVOL + "_boot", true);
+        Boolean restoreOnBoot = sharedPrefs.getBoolean(AudioFragment.KEY_AUDIO_HPVOL + "_boot", true);
 
         if ( restoreOnBoot ) {
-            Integer val = sharedPrefs.getInt(AudioFragmentActivity.KEY_AUDIO_HPVOL, DEFAULT_VALUE);
+            Integer val = sharedPrefs.getInt(AudioFragment.KEY_AUDIO_HPVOL, DEFAULT_VALUE);
             Utils.writeValue(FILE_HPVOL, Integer.toString(val));
             Log.i("LgeL9Parts", "Headphone amplifier gain restored: " + val);
         }
@@ -183,7 +183,7 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
 
             iValue = mSeekBar.getProgress() - iOffset;
             Editor editor = getEditor();
-            editor.putInt(AudioFragmentActivity.KEY_AUDIO_HPVOL, iValue);
+            editor.putInt(AudioFragment.KEY_AUDIO_HPVOL, iValue);
             editor.commit();
         }
 
@@ -232,7 +232,7 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
 
     private void setOnBootSettings(CheckBox v) {
         Editor editor = getEditor();
-        editor.putBoolean(AudioFragmentActivity.KEY_AUDIO_HPVOL + "_boot", v.isChecked());
+        editor.putBoolean(AudioFragment.KEY_AUDIO_HPVOL + "_boot", v.isChecked());
         editor.commit();
     }
 }

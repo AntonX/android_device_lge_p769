@@ -21,7 +21,7 @@ import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import com.cyanogenmod.settings.device.R;
 
-public class DevicePerformanceActivity extends PreferenceFragment {
+public class PerformanceFragment extends PreferenceFragment {
 
     public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
     public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";

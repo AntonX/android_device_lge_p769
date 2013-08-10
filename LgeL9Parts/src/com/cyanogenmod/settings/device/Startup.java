@@ -8,7 +8,7 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
-        GeneralActivity.restore(context);
+        GeneralFragment.restore(context);
         GpuOverclock.restore(context);
         IvaOverclock.restore(context);
         MaxSleepFrequency.restore(context);

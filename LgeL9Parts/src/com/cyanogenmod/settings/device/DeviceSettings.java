@@ -25,18 +25,21 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 
-public class DeviceSettings extends Activity {
+public class DeviceSettings extends FragmentActivity {
 
      ViewPager mViewPager;
      TabsAdapter mTabsAdapter;
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
+        
         super.onCreate(savedInstanceState);
 
         mViewPager = new ViewPager(this);
         mViewPager.setId(R.id.viewPager);
         setContentView(mViewPager);
+
+        //	
 
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -47,13 +50,13 @@ public class DeviceSettings extends Activity {
         mTabsAdapter = new TabsAdapter(this, mViewPager);
 
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.general_title),
-                GeneralActivity.class, null);
-        
+                GeneralFragment.class, null);
+
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
-                AudioFragmentActivity.class, null);
+                AudioFragment.class, null);
 
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.performance_title),
-                DevicePerformanceActivity.class, null);
+                PerformanceFragment.class, null);
         
         if (savedInstanceState != null) {
             actionBar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));

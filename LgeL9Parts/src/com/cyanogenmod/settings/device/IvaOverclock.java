@@ -37,7 +37,7 @@ public class IvaOverclock implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DevicePerformanceActivity.KEY_IVA_OVERCLOCK, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getString(PerformanceFragment.KEY_IVA_OVERCLOCK, "0"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

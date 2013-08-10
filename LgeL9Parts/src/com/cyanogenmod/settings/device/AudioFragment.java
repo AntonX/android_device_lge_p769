@@ -26,10 +26,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
-
 import com.cyanogenmod.settings.device.R;
 
-public class AudioFragmentActivity extends PreferenceFragment {
+public class AudioFragment extends PreferenceFragment {
 
     public static final String KEY_AUDIO_HPVOL = "audio_hpvol";
 
@@ -44,8 +43,10 @@ public class AudioFragmentActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.audio);
 
-        mAudioTuning = (AudioTuningPreference) findPreference(AudioFragmentActivity.KEY_AUDIO_HPVOL);
+        mAudioTuning = (AudioTuningPreference) findPreference(AudioFragment.KEY_AUDIO_HPVOL);
         //mAudioTuning.setEnabled(AudioTuningPreference.isSupported());
         mAudioTuning.updateSummary();
     }
+
 }
+

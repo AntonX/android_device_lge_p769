@@ -18,20 +18,26 @@ package com.cyanogenmod.settings.device;
 
 import android.os.Bundle;
 import android.content.Context;
+import android.view.View;
 import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceCategory;
 
 import com.cyanogenmod.settings.device.R;
 
-public class GeneralActivity extends PreferenceFragment {
+public class GeneralFragment extends PreferenceFragment {
 
     public static final String KEY_TOUCH_LED = "touch_led_preference";
-
     private static final String TOUCH_LED_FILE = "/sys/class/misc/backlightnotification/enable_touch_ex";
 
     @Override
@@ -43,8 +49,18 @@ public class GeneralActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.general);
         //setModePrefTitle(null);
+        
+
+        if (!TouchBlinkActivity.isEnabled()) {
+            PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference("touch_lights_preference_category");
+            category.removePreference(findPreference("touch_blink_preference"));
+            //getPreferenceScreen().removePreference(category);
+        }
+
+        //
 
         Preference touchLedPref = findPreference(KEY_TOUCH_LED);
+
         touchLedPref.setOnPreferenceChangeListener(
           new OnPreferenceChangeListener() {
             @Override
@@ -66,8 +82,9 @@ public class GeneralActivity extends PreferenceFragment {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(TOUCH_LED_FILE, sharedPrefs.getBoolean(GeneralActivity.KEY_TOUCH_LED, false) ? "0" : "1");
-    }
+        Utils.writeValue(TOUCH_LED_FILE, sharedPrefs.getBoolean(GeneralFragment.KEY_TOUCH_LED, false) ? "0" : "1");
 
+        TouchBlinkActivity.restore(context);
+    }
 
 }
