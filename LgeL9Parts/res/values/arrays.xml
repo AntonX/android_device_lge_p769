@@ -93,4 +93,24 @@
         <item>200</item>
     </string-array>
 
+    <string-array name="audio_mic_preamp_gain_entries">
+        <item>-30 dB (Loud Rock Concert)</item>
+        <item>-24 dB (Rock Concert)</item>
+        <item>-18 dB (Soft Concert)</item>
+        <item>-12 dB (Noisy)</item>
+        <item>-6 dB (Normal)</item>
+        <item>0 dB (Sensitive)</item>
+        <item>Default</item>
+    </string-array>
+
+    <string-array name="audio_mic_preamp_gain_values" translatable="false">
+        <item>0</item>
+        <item>6</item>
+        <item>12</item>
+        <item>18</item>
+        <item>24</item>
+        <item>30</item>
+        <item>-1</item>
+    </string-array>
+
 </resources>

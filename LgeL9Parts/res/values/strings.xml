@@ -22,10 +22,16 @@
     <string name="iva_overclock_title">Maximum IVA Clock Speed</string>
     <string name="max_sleep_frequency_title">Maximum Screen-Off Frequency</string>
 
+    <string name="audio_output_title">Output</string>
     <string name="audio_hpvol_title">Headphone Amplifier</string>
     <string name="audio_hpvol_gain_title">Gain</string>
     <string name="audio_hpvol_summary">Controls Analog Gain. Current: %d dB</string>
     <string name="audio_hpvol_default_title">Default</string>
     <string name="audio_hpvol_restoreonboot">Restore on Boot</string>
+
+    <string name="audio_input_title">Input</string>
+    <string name="audio_mic_main_preamp_gain_title">Main Microphone Preamplifier Gain</string>
+    <string name="audio_mic_sub_preamp_gain_title">Sub Microphone Preamplifier Gain</string>
+    <string name="audio_mic_preamp_noboot_toast">Note: Gains -24 dB and below will not be restored after reboot.</string>
 
 </resources>

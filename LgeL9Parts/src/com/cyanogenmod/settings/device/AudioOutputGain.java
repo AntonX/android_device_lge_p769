@@ -32,12 +32,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.util.Log;
 
-public class AudioTuningPreference extends DialogPreference implements OnClickListener {
+public class AudioOutputGain extends DialogPreference implements OnClickListener {
 
     private static final int SEEKBAR_ID = R.id.audio_hpvol_seekbar;
     private static final int VALUE_DISPLAY_ID = R.id.audio_hpvol_value;
 
-    private static final String FILE_HPVOL = "/sys/class/misc/voodoo_sound/headphone_amplifier_level_priv";
+    private static final String FILE_HPVOL = "/sys/class/misc/voodoo_sound/twl6040_headphone_amplifier_level";
 
     private AudioHpvolSeekBar mSeekBar;
 
@@ -49,7 +49,7 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
 
     private static Context mContext;
 
-    public AudioTuningPreference(Context context, AttributeSet attrs) {
+    public AudioOutputGain(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         setDialogLayoutResource(R.layout.preference_dialog_audio_tuning);
@@ -111,7 +111,7 @@ public class AudioTuningPreference extends DialogPreference implements OnClickLi
         if ( restoreOnBoot ) {
             Integer val = sharedPrefs.getInt(AudioFragment.KEY_AUDIO_HPVOL, DEFAULT_VALUE);
             Utils.writeValue(FILE_HPVOL, Integer.toString(val));
-            Log.i("LgeL9Parts", "Headphone amplifier gain restored: " + val);
+            //Log.i("LgeL9Parts", "Headphone amplifier gain restored: " + val);
         }
     }
 

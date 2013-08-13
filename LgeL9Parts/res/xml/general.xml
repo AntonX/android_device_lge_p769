@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/led_title" android:key="touch_lights_preference_category">
+    <PreferenceCategory 
+    	android:title="@string/led_title" 
+    	android:key="touch_lights_preference_category">
     
         <CheckBoxPreference android:key="touch_led_preference"
             android:title="@string/touch_led_title"

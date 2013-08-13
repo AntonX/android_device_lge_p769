@@ -25,28 +25,53 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.preference.ListPreference;
 import android.util.Log;
 import com.cyanogenmod.settings.device.R;
 
 public class AudioFragment extends PreferenceFragment {
 
     public static final String KEY_AUDIO_HPVOL = "audio_hpvol";
+    public static final String KEY_AUDIO_PREAMP_GAIN = "audio_mic_preamp_gain";
 
-    private AudioTuningPreference mAudioTuning;
+    private static final String MIC_MAIN_SUFFIX = "main";
+    private static final String MIC_SUB_SUFFIX = "sub";
+
+    private AudioOutputGain mAudioOutputGain;
+    private ListPreference mAudioInputGain;
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!AudioTuningPreference.isSupported())
+        if (!AudioOutputGain.isSupported())
             return; 
 
         addPreferencesFromResource(R.xml.audio);
 
-        mAudioTuning = (AudioTuningPreference) findPreference(AudioFragment.KEY_AUDIO_HPVOL);
-        //mAudioTuning.setEnabled(AudioTuningPreference.isSupported());
-        mAudioTuning.updateSummary();
+        mAudioOutputGain = (AudioOutputGain) findPreference(AudioFragment.KEY_AUDIO_HPVOL);
+        //mAudioOutputGain.setEnabled(AudioOutputGain.isSupported());
+        mAudioOutputGain.updateSummary();
+                                          
+        mAudioInputGain = (ListPreference) findPreference(KEY_AUDIO_PREAMP_GAIN + "_" + MIC_MAIN_SUFFIX);
+        //mAudioInputGain.setEnabled(mAudioInputGain.isSupported());
+        mAudioInputGain.setOnPreferenceChangeListener(new AudioPreampGain(getActivity(), MIC_MAIN_SUFFIX));
+        AudioPreampGain.updateSummary(mAudioInputGain, Integer.parseInt(mAudioInputGain.getValue()));
+
+        mAudioInputGain = (ListPreference) findPreference(KEY_AUDIO_PREAMP_GAIN + "_" + MIC_SUB_SUFFIX);
+        //mAudioInputGain.setEnabled(mAudioInputGain.isSupported());
+        mAudioInputGain.setOnPreferenceChangeListener(new AudioPreampGain(getActivity(), MIC_SUB_SUFFIX));
+        AudioPreampGain.updateSummary(mAudioInputGain, Integer.parseInt(mAudioInputGain.getValue()));
+
     }
+
+    public static void restore(Context context) {
+        AudioOutputGain.restore(context);
+        AudioPreampGain.restore(context, MIC_MAIN_SUFFIX);
+        AudioPreampGain.restore(context, MIC_SUB_SUFFIX);
+    }
+
 
 }
 

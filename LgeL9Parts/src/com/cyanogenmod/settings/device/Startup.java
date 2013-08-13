@@ -12,6 +12,6 @@ public class Startup extends BroadcastReceiver {
         GpuOverclock.restore(context);
         IvaOverclock.restore(context);
         MaxSleepFrequency.restore(context);
-        AudioTuningPreference.restore(context);
+        AudioFragment.restore(context);
     }
 }

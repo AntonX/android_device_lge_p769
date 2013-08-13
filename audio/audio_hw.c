@@ -175,24 +175,24 @@
 #define DB_TO_EARPIECE_VOLUME(x) (((x) + 24) / 2)
 
 /* use-case specific mic volumes, all in dB */
-#define CAPTURE_DIGITAL_MIC_VOLUME            26
-#define CAPTURE_MAIN_MIC_VOLUME               28
-#define CAPTURE_SUB_MIC_VOLUME                28
-#define CAPTURE_HEADSET_MIC_VOLUME            20
+#define CAPTURE_DIGITAL_MIC_VOLUME            18
+#define CAPTURE_MAIN_MIC_VOLUME               18
+#define CAPTURE_SUB_MIC_VOLUME                18
+#define CAPTURE_HEADSET_MIC_VOLUME            15
 
-#define VOICE_RECOGNITION_MAIN_MIC_VOLUME     28
-#define VOICE_RECOGNITION_SUB_MIC_VOLUME      28
-#define VOICE_RECOGNITION_HEADSET_MIC_VOLUME  20
+#define VOICE_RECOGNITION_MAIN_MIC_VOLUME     18
+#define VOICE_RECOGNITION_SUB_MIC_VOLUME      18
+#define VOICE_RECOGNITION_HEADSET_MIC_VOLUME  15
 
-#define CAMCORDER_MAIN_MIC_VOLUME             30
-#define CAMCORDER_SUB_MIC_VOLUME              30
-#define CAMCORDER_HEADSET_MIC_VOLUME          20
+#define CAMCORDER_MAIN_MIC_VOLUME             24
+#define CAMCORDER_SUB_MIC_VOLUME              24
+#define CAMCORDER_HEADSET_MIC_VOLUME          21
 
-#define VOIP_MAIN_MIC_VOLUME                  15
-#define VOIP_SUB_MIC_VOLUME                   15
+#define VOIP_MAIN_MIC_VOLUME                  18
+#define VOIP_SUB_MIC_VOLUME                   18
 #define VOIP_HEADSET_MIC_VOLUME               15
 
-#define VOICE_CALL_MAIN_MIC_VOLUME            15 //-2
+#define VOICE_CALL_MAIN_MIC_VOLUME            15
 #define VOICE_CALL_SUB_MIC_VOLUME             15
 #define VOICE_CALL_HEADSET_MIC_VOLUME         15
 
@@ -271,7 +271,7 @@ struct route_setting defaults[] = {
     },
     {
         .ctl_name = "AMIC Equalizer",
-        .strval = "High-pass -18dB",
+        .strval = MIXER_0DB_HIGH_PASS,
     },
     {
         .ctl_name = MIXER_DL1_MEDIA_PLAYBACK_VOLUME,
