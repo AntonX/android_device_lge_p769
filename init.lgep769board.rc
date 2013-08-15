@@ -36,7 +36,7 @@ on init
 #
 
 on fs
-    mount_all ./fstab.u2
+    mount_all ./fstab.lgep769board
 # disable FUSE property value
     setprop ro.crypto.fuse_sdcard true
 

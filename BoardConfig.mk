@@ -39,7 +39,8 @@ BOARD_BLUEDROID_VENDOR_CONF := device/lge/p769/bluetooth/vnd_lge_p769.txt
 
 BOARD_HAS_NO_MISC_PARTITION := true
 
-#TARGET_RECOVERY_PRE_COMMAND := "/system/bin/setup-recovery"
+TARGET_RECOVERY_FSTAB = device/lge/p769/fstab.u2
+RECOVERY_FSTAB_VERSION = 2 
 
 BOARD_EGL_CFG := device/lge/p769/egl.cfg
 
