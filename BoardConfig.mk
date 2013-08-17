@@ -101,4 +101,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_CUSTOM_GRAPHICS := ../../../device/lge/p769/recovery-gfx.c
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+
 TARGET_OTA_ASSERT_DEVICE := p769,p760,u2
