@@ -10,6 +10,9 @@
     <string name="category_performance_title">Производительность</string>
     <string name="category_audio_title">Звук</string>
 
+    <string name="button_default">По умолчанию</string>
+    <string name="button_reset">Сбросить</string>
+
     <string name="led_title">Сенсорные Кнопки</string>
     <string name="touch_led_title">Запретить подсветку кнопок</string>
     <string name="touch_led_summary">Кнопки не будут загораться при нажатиях.</string>
@@ -26,12 +29,14 @@
     <string name="audio_hpvol_title">Усилитесь наушников</string>
     <string name="audio_hpvol_gain_title">Усиление</string>
     <string name="audio_hpvol_summary">Управление аналоговым усилением. Текущее: %d дБ</string>
-    <string name="audio_hpvol_default_title">По умолчанию</string>
     <string name="audio_hpvol_restoreonboot">Восстановить при загрузке</string>
 
     <string name="audio_input_title">Вход</string>
     <string name="audio_mic_main_preamp_gain_title">Усиление основного микрофона</string>
     <string name="audio_mic_sub_preamp_gain_title">Усиление второго микрофона</string>
     <string name="audio_mic_preamp_noboot_toast">Усиления -24 дБ и ниже не будут восстановлены после перезагрузки.</string>
+
+    <string name="category_sensors_title">Датчики и вибро</string>
+    <string name="vibrator_intensity_title">Интенсивность вибратора</string>
 
 </resources>

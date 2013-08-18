@@ -38,7 +38,11 @@ import com.cyanogenmod.settings.device.R;
 public class GeneralFragment extends PreferenceFragment {
 
     public static final String KEY_TOUCH_LED = "touch_led_preference";
+    public static final String KEY_VIBRATOR = "vibrator_intensity_preference";
+
     private static final String TOUCH_LED_FILE = "/sys/class/misc/backlightnotification/enable_touch_ex";
+
+    private VibratorIntensity mVibrator;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,8 +52,6 @@ public class GeneralFragment extends PreferenceFragment {
           return;
 
         addPreferencesFromResource(R.xml.general);
-        //setModePrefTitle(null);
-        
 
         if (!TouchBlinkActivity.isEnabled()) {
             PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference("touch_lights_preference_category");
@@ -70,6 +72,12 @@ public class GeneralFragment extends PreferenceFragment {
             }
           }
         );
+
+	//
+
+	if (VibratorIntensity.isSupported())
+	    mVibrator = (VibratorIntensity) findPreference(KEY_VIBRATOR);
+
     }
 
     public static boolean isSupported() {
@@ -85,6 +93,7 @@ public class GeneralFragment extends PreferenceFragment {
         Utils.writeValue(TOUCH_LED_FILE, sharedPrefs.getBoolean(GeneralFragment.KEY_TOUCH_LED, false) ? "0" : "1");
 
         TouchBlinkActivity.restore(context);
+        VibratorIntensity.restore(context);
     }
 
 }

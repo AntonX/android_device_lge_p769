@@ -17,4 +17,15 @@
     
     </PreferenceCategory>
 
+    <PreferenceCategory android:key="category_sensors"
+        android:title="@string/category_sensors_title">
+
+        <com.cyanogenmod.settings.device.VibratorIntensity
+            android:key="vibrator_intensity_preference"
+            android:title="@string/vibrator_intensity_title"
+            android:dialogTitle="@string/vibrator_intensity_title"
+            android:persistent="false" />
+    
+    </PreferenceCategory>
+
 </PreferenceScreen>

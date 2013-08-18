@@ -52,8 +52,9 @@ public class DeviceSettings extends FragmentActivity {
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.general_title),
                 GeneralFragment.class, null);
 
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
-                AudioFragment.class, null);
+        if ( AudioFragment.isSupported())
+            mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
+                                AudioFragment.class, null);
 
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.performance_title),
                 PerformanceFragment.class, null);

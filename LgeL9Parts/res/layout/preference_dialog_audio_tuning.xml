@@ -43,7 +43,7 @@
                 android:id="@+id/btnAudioHpvolDefault"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/audio_hpvol_default_title" />
+                android:text="@string/button_default" />
 
             <CheckBox
                 android:id="@+id/cbAudioHpvolBoot"
