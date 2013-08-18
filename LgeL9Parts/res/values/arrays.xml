@@ -93,6 +93,36 @@
         <item>200</item>
     </string-array>
 
+    <string-array name="bln_timeout_entries">
+        <item>No Timeout</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>45 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>3 hours</item>
+        <item>4 hours</item>
+        <item>6 hours</item>
+        <item>8 hours</item>
+        <item>10 hours</item>
+        <item>12 hours</item>
+    </string-array>
+
+    <string-array name="bln_timeout_values" translatable="false">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>240</item>
+        <item>360</item>
+        <item>480</item>
+        <item>600</item>
+        <item>720</item>
+    </string-array>
+
     <string-array name="audio_mic_preamp_gain_entries">
         <item>-30 dB (Loud Rock Concert)</item>
         <item>-24 dB (Rock Concert)</item>

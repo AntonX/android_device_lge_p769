@@ -19,6 +19,21 @@
         <item>1008 МГц</item>
     </string-array>
 
+    <string-array name="bln_timeout_entries">
+        <item>Не останавливать</item>
+        <item>15 минут</item>
+        <item>30 минут</item>
+        <item>45 минут</item>
+        <item>1 час</item>
+        <item>2 часа</item>
+        <item>3 часа</item>
+        <item>4 часа</item>
+        <item>6 часов</item>
+        <item>8 часов</item>
+        <item>10 часов</item>
+        <item>12 часов</item>
+    </string-array>
+
     <string-array name="touch_blink_off_entries">
         <item>3 сек</item>
         <item>4 сек</item>

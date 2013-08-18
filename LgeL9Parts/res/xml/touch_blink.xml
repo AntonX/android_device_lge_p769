@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory 
+    	android:key="category_bln" 
+    	android:title="@string/bln_category_title" >
+
+        <CheckBoxPreference android:key="bln_enable_preference"
+            android:title="@string/bln_enable_title"
+            android:summary="@string/bln_enable_summary"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="bln_timeout_preference"
+            android:title="@string/bln_timeout_title"
+            android:entries="@array/bln_timeout_entries"
+            android:entryValues="@array/bln_timeout_values"
+            android:defaultValue="120" />
+
+    </PreferenceCategory>
+        
     <PreferenceCategory 
     	android:key="category_touch_blink" 
     	android:title="@string/touch_blink_timing_title" 

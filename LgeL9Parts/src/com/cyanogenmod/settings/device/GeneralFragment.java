@@ -43,6 +43,7 @@ public class GeneralFragment extends PreferenceFragment {
     private static final String TOUCH_LED_FILE = "/sys/class/misc/backlightnotification/enable_touch_ex";
 
     private VibratorIntensity mVibrator;
+    private static Preference mBlnPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,16 +54,20 @@ public class GeneralFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.general);
 
-        if (!TouchBlinkActivity.isEnabled()) {
+        //setModePrefTitle(null);
+        
+        mBlnPreference = findPreference("touch_blink_preference");
+        
+        if (!BlnActivity.isSupported()) {
             PreferenceCategory category = (PreferenceCategory) getPreferenceScreen().findPreference("touch_lights_preference_category");
-            category.removePreference(findPreference("touch_blink_preference"));
+            category.removePreference(mBlnPreference);
             //getPreferenceScreen().removePreference(category);
-        }
+        } else
+            updateBlnSummary();
 
         //
 
         Preference touchLedPref = findPreference(KEY_TOUCH_LED);
-
         touchLedPref.setOnPreferenceChangeListener(
           new OnPreferenceChangeListener() {
             @Override
@@ -70,8 +75,7 @@ public class GeneralFragment extends PreferenceFragment {
                 Utils.writeValue(TOUCH_LED_FILE, (Boolean) newValue ? "0" : "1"); // option is Disable, so we invert
                 return true;
             }
-          }
-        );
+          });
 
 	//
 
@@ -88,12 +92,18 @@ public class GeneralFragment extends PreferenceFragment {
         if (!isSupported()) {
             return;
         }
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         Utils.writeValue(TOUCH_LED_FILE, sharedPrefs.getBoolean(GeneralFragment.KEY_TOUCH_LED, false) ? "0" : "1");
 
-        TouchBlinkActivity.restore(context);
         VibratorIntensity.restore(context);
+        BlnActivity.restore(context);
+    }
+
+    public static void updateBlnSummary() {
+        if (mBlnPreference == null) return;
+        if (BlnActivity.isSupported()) {
+            mBlnPreference.setSummary(BlnActivity.isEnabled() ? R.string.bln_enabled_summary : R.string.bln_disabled_summary);
+        }
     }
 
 }

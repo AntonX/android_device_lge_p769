@@ -24,23 +24,20 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-public class TouchBlinkOn implements OnPreferenceChangeListener {
+public class BlnTimeout implements OnPreferenceChangeListener {
 
-    public static final String KEY_TOUCH_BLINK_ON = "touch_blink_on";
+    public static final String KEY_BLN_TIMEOUT = "bln_timeout_preference";
 
-    private static final String FILE = "/sys/class/misc/backlightnotification/blink_period_on";
+    private static final String FILE = "/sys/class/misc/backlightnotification/notification_timeout";
 
-    public static boolean isSupported() {
-        return Utils.fileExists(FILE);
-    }
+    public static boolean isSupported() { return Utils.fileExists(FILE); }
 
     public static void restore(Context context) {
         if (!isSupported()) {
             return;
         }
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(KEY_TOUCH_BLINK_ON, "40"));
+        Utils.writeValue(FILE, sharedPrefs.getString(KEY_BLN_TIMEOUT, "120"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -62,4 +59,3 @@ public class TouchBlinkOn implements OnPreferenceChangeListener {
         preference.setSummary(entries[best].toString());
     }
 }
-
