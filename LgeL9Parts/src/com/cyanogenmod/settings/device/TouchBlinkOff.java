@@ -26,6 +26,8 @@ import android.util.Log;
 
 public class TouchBlinkOff implements OnPreferenceChangeListener {
 
+    public static final String KEY_TOUCH_BLINK_OFF = "touch_blink_off";
+
     private static final String FILE = "/sys/class/misc/backlightnotification/blink_period_off";
 
     public static boolean isSupported() {
@@ -38,7 +40,7 @@ public class TouchBlinkOff implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(TouchBlinkActivity.KEY_TOUCH_BLINK_OFF, "7000"));
+        Utils.writeValue(FILE, sharedPrefs.getString(KEY_TOUCH_BLINK_OFF, "7000"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

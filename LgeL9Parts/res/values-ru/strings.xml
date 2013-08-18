@@ -21,6 +21,13 @@
     <string name="touch_blink_off_title">Время выключеной подсветки</string>
     <string name="touch_blink_on_title">Время включеной подсветки</string>
 
+    <string name="bln_category_title">Уведомления</string>
+    <string name="bln_timeout_title">Остановить подсветку</string>
+    <string name="bln_enable_title">Разрешить</string>
+    <string name="bln_enable_summary">Включает подсветку кнопок при уведомлениях.</string>
+    <string name="bln_enabled_summary">Разрешены</string>
+    <string name="bln_disabled_summary">Запрещены</string>
+
     <string name="gpu_overclock_title">Максимальная частота GPU</string>
     <string name="iva_overclock_title">Максимальная частота IVA</string>
     <string name="max_sleep_frequency_title">Максимальная частота при выкл. экране</string>
