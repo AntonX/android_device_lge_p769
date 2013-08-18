@@ -44,7 +44,7 @@ public class DeviceSettings extends FragmentActivity {
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE, ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         //actionBar.setTitle(R.string.app_name);
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
@@ -52,8 +52,9 @@ public class DeviceSettings extends FragmentActivity {
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.general_title),
                 GeneralFragment.class, null);
 
-        mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
-                AudioFragment.class, null);
+        if ( AudioFragment.isSupported())
+            mTabsAdapter.addTab(actionBar.newTab().setText(R.string.audio_title),
+                                AudioFragment.class, null);
 
         mTabsAdapter.addTab(actionBar.newTab().setText(R.string.performance_title),
                 PerformanceFragment.class, null);

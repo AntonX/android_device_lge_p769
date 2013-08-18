@@ -41,6 +41,10 @@ public class AudioFragment extends PreferenceFragment {
     private ListPreference mAudioInputGain;
     
 
+    public static boolean isSupported() {
+        return AudioOutputGain.isSupported() || AudioPreampGain.isSupported();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
