@@ -8,29 +8,35 @@
     <item name="screen.full">160</item>
     <item name="wifi.on">1</item>
     <item name="wifi.active">150</item>
-    <item name="wifi.scan">200</item>
+    <item name="wifi.scan">100</item>
     <item name="dsp.audio">150</item>
     <item name="dsp.video">200</item>
     <item name="radio.active">150</item>
     <item name="gps.on">55</item>
-    <item name="battery.capacity">1750</item>
+    <item name="battery.capacity">2000</item>
     <item name="radio.scanning">90</item>
     <array name="radio.on">
         <value>3.0</value>
         <value>3.0</value>
     </array>
     <array name="cpu.speeds">
-        <value>350000</value>
-        <value>700000</value>
-        <value>920000</value>
+        <value>200000</value>
+        <value>300000</value>
+        <value>600000</value>
+        <value>800000</value>
+        <value>1008000</value>
         <value>1200000</value>
+        <value>1350000</value>
     </array>
     <item name="cpu.idle">7</item>
     <item name="cpu.awake">20</item>
     <array name="cpu.active">
-        <value>120</value>
-        <value>228</value>
-        <value>299</value>
-        <value>397</value>
+        <value>65</value>
+        <value>100</value>
+        <value>185</value>
+        <value>255</value>
+        <value>320</value>
+        <value>390</value>
+        <value>438</value>
     </array>
 </device>
