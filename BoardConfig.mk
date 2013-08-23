@@ -107,4 +107,5 @@ BOARD_HARDWARE_CLASS := device/lge/p769/cmhw/
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
-TARGET_OTA_ASSERT_DEVICE := p769,p760,u2
+# p940 included to support some widely used generic CWM recovery
+TARGET_OTA_ASSERT_DEVICE := p769,p760,u2,p940
