@@ -14,9 +14,6 @@
     <string name="button_reset">Reset</string>
 
     <string name="led_title">Lights</string>
-
-    <string name="touch_led_title">Disable Touch Lights</string>
-    <string name="touch_led_summary">LEDs will not be turning on touch.</string>
     
     <string name="touch_blink_title">Notification Lights</string>
 

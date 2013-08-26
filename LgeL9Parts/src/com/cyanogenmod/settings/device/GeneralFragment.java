@@ -38,7 +38,6 @@ import com.cyanogenmod.settings.device.R;
 public class GeneralFragment extends PreferenceFragment {
 
     public static final String KEY_TOUCH_LED = "touch_led_preference";
-    private static final String TOUCH_LED_FILE = "/sys/class/misc/backlightnotification/enable_touch_ex";
 
     private static Preference mBlnPreference;
 
@@ -63,32 +62,16 @@ public class GeneralFragment extends PreferenceFragment {
         } else
             updateBlnSummary();
 
-        //
-
-        Preference touchLedPref = findPreference(KEY_TOUCH_LED);
-        touchLedPref.setOnPreferenceChangeListener(
-          new OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Utils.writeValue(TOUCH_LED_FILE, (Boolean) newValue ? "0" : "1"); // option is Disable, so we invert
-                return true;
-            }
-          }
-        );
-
     }
 
     public static boolean isSupported() {
-        return Utils.fileExists(TOUCH_LED_FILE);
+        return BlnActivity.isSupported();
     }
 
     public static void restore(Context context) {
         if (!isSupported()) {
             return;
         }
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(TOUCH_LED_FILE, sharedPrefs.getBoolean(GeneralFragment.KEY_TOUCH_LED, false) ? "0" : "1");
-
         BlnActivity.restore(context);
     }
 
