@@ -65,6 +65,10 @@ on post-fs-data
     chown system system /dev/hdcp
     chmod 0644 /dev/hdcp
 
+# Hardware tunable perms
+    chown root system /sys/devices/platform/tspdrv/nforce_timed
+    chmod 0666 /sys/devices/platform/tspdrv/nforce_timed
+
 # Create Directory for widevine
     mkdir /persist/widevine 0770 drm system
 
