@@ -38,6 +38,9 @@ omap.audio.power=PingPong
 ro.build.target_country=US
 ro.build.target_operator=OPEN
 
+# SGX540 is slower with the scissor optimization enabled
+ro.hwui.disable_scissor_opt=true
+
 ## NFC
 #ro.nfc.port=I2C
 #lge.nfc.fwpatchv13=yes
