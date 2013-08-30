@@ -79,8 +79,8 @@ public class U2RIL extends RIL implements CommandsInterface {
 
     protected int mCallState = TelephonyManager.CALL_STATE_IDLE;
 
-    private int RIL_REQUEST_HANG_UP_CALL = 0xce;
-    private int RIL_REQUEST_LGE_CPATH = 0x12a;
+    private int RIL_REQUEST_HANG_UP_CALL = 0xb7;
+    private int RIL_REQUEST_LGE_CPATH = 0xfd;
 
     /* We're not actually changing REQUEST_GET_IMEI, but it's one
        of the first requests made after enabling the radio, and it
@@ -93,7 +93,7 @@ public class U2RIL extends RIL implements CommandsInterface {
         //RIL_REQUEST_LGE_SEND_COMMAND
         // Use this to bootstrap a bunch of internal variables
         RILRequest rrLSC = RILRequest.obtain(
-                0x142, null);
+                0x113, null);
         rrLSC.mParcel.writeInt(1);
         rrLSC.mParcel.writeInt(0);
         send(rrLSC);
@@ -228,7 +228,7 @@ public class U2RIL extends RIL implements CommandsInterface {
                 break;
             case 1080: // RIL_UNSOL_LGE_FACTORY_READY (NG)
                 /* Adjust request IDs */
-                RIL_REQUEST_HANG_UP_CALL = 0xce;
+                RIL_REQUEST_HANG_UP_CALL = 0xb7;
                 break;
             case RIL_UNSOL_LGE_SIM_STATE_CHANGED:
             case RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW:
