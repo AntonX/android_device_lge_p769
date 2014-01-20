@@ -180,19 +180,19 @@
 #define CAPTURE_SUB_MIC_VOLUME                18
 #define CAPTURE_HEADSET_MIC_VOLUME            15
 
-#define VOICE_RECOGNITION_MAIN_MIC_VOLUME     12
-#define VOICE_RECOGNITION_SUB_MIC_VOLUME      18
-#define VOICE_RECOGNITION_HEADSET_MIC_VOLUME  15
+#define VOICE_RECOGNITION_MAIN_MIC_VOLUME     6
+#define VOICE_RECOGNITION_SUB_MIC_VOLUME      9
+#define VOICE_RECOGNITION_HEADSET_MIC_VOLUME  9
 
 #define CAMCORDER_MAIN_MIC_VOLUME             24
 #define CAMCORDER_SUB_MIC_VOLUME              24
 #define CAMCORDER_HEADSET_MIC_VOLUME          21
 
-#define VOIP_MAIN_MIC_VOLUME                  3
-#define VOIP_SUB_MIC_VOLUME                   12
-#define VOIP_HEADSET_MIC_VOLUME               9
+#define VOIP_MAIN_MIC_VOLUME                  0
+#define VOIP_SUB_MIC_VOLUME                   9
+#define VOIP_HEADSET_MIC_VOLUME               6
 
-#define VOICE_CALL_MAIN_MIC_VOLUME            0
+#define VOICE_CALL_MAIN_MIC_VOLUME            -3
 #define VOICE_CALL_SUB_MIC_VOLUME             9
 #define VOICE_CALL_HEADSET_MIC_VOLUME         6
 
