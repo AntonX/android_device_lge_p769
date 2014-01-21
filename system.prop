@@ -41,6 +41,9 @@ ro.build.target_operator=OPEN
 # SGX540 is slower with the scissor optimization enabled
 ro.hwui.disable_scissor_opt=true
 
+# fix graphics rotation glitches
+ro.bq.gpu_to_cpu_unsupported=1
+
 ## NFC
 #ro.nfc.port=I2C
 #lge.nfc.fwpatchv13=yes
