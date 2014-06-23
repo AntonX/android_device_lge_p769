@@ -1,3 +1,5 @@
+DEVICE_DIR := device/lge/p769
+
 # inherit from the proprietary version
 -include vendor/lge/p769/BoardConfigVendor.mk
 
@@ -52,7 +54,7 @@ COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 
-BOARD_EGL_CFG := device/lge/p769/egl.cfg
+BOARD_EGL_CFG := $(DEVICE_DIR)/egl.cfg
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -89,29 +91,31 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 USE_OPENGL_RENDERER := true
 
 
-TARGET_SPECIFIC_HEADER_PATH := device/lge/p769/include
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_DIR)/include
 
-BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/lge/p769/vibrator.c
+BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../$(DEVICE_DIR)/vibrator.c
 
 KERNEL_SGX_MODULES:
-	make -C device/lge/p769/sgx-module/eurasia_km/eurasiacon/build/linux2/omap4430_android/ O=$(KERNEL_OUT) KERNELDIR=$(ANDROID_BUILD_TOP)/$(KERNEL_SRC) ARCH="arm" $(ARM_CROSS_COMPILE) KERNEL_CROSS_COMPILE=$(ARM_CROSS_COMPILE) TARGET_PRODUCT="blaze_tablet" BUILD=release TARGET_SGX=540 PLATFORM_VERSION=4.0
+	make -C $(DEVICE_DIR)/sgx-module/eurasia_km/eurasiacon/build/linux2/omap4430_android/ O=$(KERNEL_OUT) KERNELDIR=$(ANDROID_BUILD_TOP)/$(KERNEL_SRC) ARCH="arm" $(ARM_CROSS_COMPILE) KERNEL_CROSS_COMPILE=$(ARM_CROSS_COMPILE) TARGET_PRODUCT="blaze_tablet" BUILD=release TARGET_SGX=540 PLATFORM_VERSION=4.0
 	mkdir -p $(TARGET_OUT)/modules/
 	mv $(OUT)/target/*sgx540_120.ko $(TARGET_OUT)/modules/
 
 TARGET_KERNEL_MODULES := KERNEL_SGX_MODULES
 
 ## Radio fixes
-BOARD_RIL_CLASS := ../../../device/lge/p769/ril/
+BOARD_RIL_CLASS := ../../../$(DEVICE_DIR)/ril/
 
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/p769/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_DIR)/bluetooth
 
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
-BOARD_HARDWARE_CLASS := device/lge/p769/cmhw/
+BOARD_HARDWARE_CLASS := $(DEVICE_DIR)/cmhw/
 
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+
+TARGET_RELEASETOOLS_EXTENSIONS = $(DEVICE_DIR)/releasetools.py
 
 # p940 included to support some widely used generic CWM recovery
 TARGET_OTA_ASSERT_DEVICE := p769,p760,u2,p940
