@@ -33,6 +33,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import android.util.Log;
+import java.util.ArrayList;
 
 public class U2RIL extends RIL implements CommandsInterface {
 
@@ -41,6 +42,7 @@ public class U2RIL extends RIL implements CommandsInterface {
     protected CallPathHandler mPathHandler;
 
     private int mCallPath = -1;
+    ArrayList<Integer> mCallList = new ArrayList<Integer>();
 
     public U2RIL(Context context, int networkMode, int cdmaSubscription) {
         super(context, networkMode, cdmaSubscription);
@@ -179,6 +181,14 @@ public class U2RIL extends RIL implements CommandsInterface {
     static final int RIL_UNSOL_LGE_SIM_STATE_CHANGED_NEW = 1061;
     static final int RIL_UNSOL_LGE_SELECTED_SPEECH_CODEC = 1074;
 
+    private void WriteLgeCPATH(int path) {
+        RILRequest rrLSL = RILRequest.obtain(
+                           RIL_REQUEST_LGE_CPATH, null);
+        rrLSL.mParcel.writeInt(1);
+        rrLSL.mParcel.writeInt(path);
+        send(rrLSL);
+    }
+
     @Override
     protected void
     processUnsolicited (Parcel p) {
@@ -207,34 +217,39 @@ public class U2RIL extends RIL implements CommandsInterface {
             case RIL_UNSOL_LGE_XCALLSTAT:
                 int[] intArray = (int[]) ret;
                 int xcallState = intArray[1];
+                int xcallID = intArray[0];
                 /* 0 - established
+                 * 1 - on hold
                  * 2 - dial start
                  * 3 - dialing
                  * 4 - incoming
+                 * 5 - call waiting
                  * 6 - hangup
                  * 7 - answered
                  */
-                mCallPath = -1;
                 switch (xcallState) {
-                    case 0:
+                case 7:
+                    mCallList.add(xcallID);
+                    if (mCallList.size() == 1) {
+                        WriteLgeCPATH(1);
                         mCallPath = 1;
-                        break;
-                    /*case 3:
-                    case 4:*/
-                    case 6:
-                        mCallPath = 0;
-                        break;
-                    default:
-                        break;
+                    }
+                    break;
+                case 6:
+                    if(mCallList.contains(xcallID)) {
+                        mCallList.remove(mCallList.indexOf(xcallID));
+                        if (mCallList.size() == 0) {
+                            if (mCallPath != 1) {
+                                WriteLgeCPATH(1);
+                            }
+                            WriteLgeCPATH(0);
+                            mCallPath = 0;
+                        }
+                    }
+                    break;
                 }
-                if (RILJ_LOGD) riljLog("LGE call state change > " + intArray[1]);
-                if (mCallPath >= 0) {
-                    RILRequest rrLSL = RILRequest.obtain(
-                            RIL_REQUEST_LGE_CPATH, null);
-                    rrLSL.mParcel.writeInt(1);
-                    rrLSL.mParcel.writeInt(mCallPath);
-                    send(rrLSL);
-                }
+
+                if (RILJ_LOGD) riljLog("LGE XCALLSTAT > {" + xcallID + "," +  xcallState + "}");
 
                 break;
             case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED:
@@ -297,19 +312,21 @@ public class U2RIL extends RIL implements CommandsInterface {
         private void checkSpeakerphoneState() {
             if (mCallState == TelephonyManager.CALL_STATE_OFFHOOK) {
                 int callPath = -1;
-                if (audioManager.isSpeakerphoneOn()) {
-                    callPath = 3;
+                if (mCallList.size() != 0) {
+                    if (audioManager.isSpeakerphoneOn()) {
+                        callPath = 3;
+                    } else if (audioManager.isBluetoothScoOn()) {
+                        callPath = 4;
+                    } else {
+                        callPath = 1;
+                    }
                 } else {
-                    callPath = 1;
+                    callPath = 0;
                 }
 
                 if (callPath != mCallPath) {
                     mCallPath = callPath;
-                    RILRequest rrLSL = RILRequest.obtain(
-                            RIL_REQUEST_LGE_CPATH, null);
-                    rrLSL.mParcel.writeInt(1);
-                    rrLSL.mParcel.writeInt(callPath);
-                    send(rrLSL);
+                    WriteLgeCPATH(callPath);
                 }
 
                 Message msg = obtainMessage();
